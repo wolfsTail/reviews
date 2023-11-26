@@ -1,0 +1,15 @@
+{% extends "layout/basic.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Изменение личных данных{% endblock %}
+
+{% block content %}
+<h3> Изменени личных данных пользователя {{ user.username }}</h3>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    {% bootstrap_button "Обновить" button_class='btn-danger' %}
+
+</form>
+{% endblock %}

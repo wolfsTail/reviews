@@ -1,0 +1,12 @@
+{% extends "layout/basic.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Активирован ранее{% endblock %}
+
+{% block content %}
+<h3> Активация </h3>
+<p> Вы успешно зарегистрировались </p>
+<p> Пользователь с такими данными уже активирован ранее. </p>
+<p> Вы всегда можете аутентифицироваться на сайте по <a href="{% url 'main:login' %}">ссылке</a></p>
+{% endblock %}

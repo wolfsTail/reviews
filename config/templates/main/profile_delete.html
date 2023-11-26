@@ -1,0 +1,15 @@
+{% extends "layout/basic.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Сброс пароля пользователя{% endblock %}
+
+{% block content %}
+<h3> Восстановление пароля пользователя </h3>
+<form method="post">
+    {% csrf_token %}
+    {% bootstrap_form form layout='horizontal' %}
+    {% bootstrap_button "Сбросить пароль" %}
+</form>
+
+{% endblock %}

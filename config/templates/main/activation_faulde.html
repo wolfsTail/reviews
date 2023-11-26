@@ -1,0 +1,11 @@
+{% extends "layout/basic.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Ошибка при активации{% endblock %}
+
+{% block content %}
+<h3> Сообщение об активации </h3>
+<p> Активация пользователя прошла неудачно! </p>
+<p> Попробуйте пройти повторную регитсрацию (<a href="{% url 'main:register' %}">ссылка</a>) </p>
+{% endblock %}

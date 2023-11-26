@@ -1,0 +1,71 @@
+{% load django_bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %} Главная {% endblock %} - Обзоры книг</title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" type="text/css" href="{% static 'main/style.css' %}">
+    {% bootstrap_javascript %}
+    </head>
+<body class="container-fluid">
+    <header class="mb-4>">
+        <h1 class="display-1 text-center">Особое мнение</h1>
+    </header>
+    <nav class="row navbar navbar-expand-mb bg-light">
+        <div class="col container">
+            <a class="navbar-brand" href="{% url 'main:index' %}">Главная</a>
+            <button class="navbar-toggler" type="botton" data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                {% if user.is_authenticated %}
+                <div class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Профиль</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{% url 'main:profile' %}">Мои рецензии</a>
+                        <a class="dropdown-item" href="{% url 'main:profile_edit' %}">Личные данные</a>
+                        <a class="dropdown-item" href="{% url 'main:password_edit' %}">Пароль</a>
+                        <hr class="dropdown-divider">
+                        <form class="px-3" method="post" action="{% url 'main:logout' %}">
+                            {% csrf_token %}
+                            {% bootstrap_button 'Выйти' button_class='btn-danger' %}
+                        </form>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item" href="{% url 'main:profile_delete' %}">Удалить</a>
+                    </div>
+                </div>
+                {% else %}
+                <a class="nav-link" href="{% url 'main:register' %}">Зарегистрироваться</a>
+                <a class="nav-link" href="{% url 'main:login' %}">Войти</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="row">
+        <nav class="col-md-auto nav flex-column bg-light">
+            <span class="nav-link root">Техническая литература</span>
+                <a class="nav-link" href="#">Основы программирования</a>
+                <a class="nav-link" href="#">Алгоритмы и структуры данных</a>
+                <a class="nav-link" href="#">Тестирование</a>
+            <span class="nav-link root">Художественная литература</span>
+                <a class="nav-link" href="#">Классическая литература</a>
+                <a class="nav-link" href="#">Фэнтези</a>
+                <a class="nav-link" href="#">Фантастика</a>
+                <a class="nav-link root" href="{% url 'main:other' page='about' %}">О сайте</a>            
+        </nav>
+        <main class="col py-2">
+            {% bootstrap_messages %}
+            {% block content %}
+            {% endblock %}
+        </main>
+    </div>
+    <footer class="mt-3">
+        <p class="text-end fst-italic">&copy; by dromanov|2023</p>
+    </footer>
+</body>
+</html>

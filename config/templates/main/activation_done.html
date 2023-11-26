@@ -1,0 +1,12 @@
+{% extends "layout/basic.html" %}
+
+{% load django_bootstrap5 %}
+
+{% block title %}Профиль активирован{% endblock %}
+
+{% block content %}
+<h3> Активация профиля выполнена </h3>
+<p> Вы успешно активировали профиль </p>
+
+<p> Вы всегда можете аутентифицироваться на сайте по <a href="{% url 'main:login' %}">ссылке</a></p>
+{% endblock %}
